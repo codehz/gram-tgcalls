@@ -20,27 +20,23 @@ export interface EditParams {
 }
 
 export interface Listeners {
-    onFinish?: () => void;
-    onError?: (error: Error) => void;
+    [K: `on${string}`]: Function | undefined;
+}
+
+export interface Media<T> {
+    readable?: Readable;
+    options?: T
 }
 
 export interface Video {
-    readable?: Readable;
-    listeners?: Listeners;
-    params?: {
-        width?: number;
-        height?: number;
-        framerate?: number;
-    };
+    width?: number;
+    height?: number;
+    framerate?: number;
 }
 
 export interface Audio {
-    readable?: Readable;
-    listeners?: Listeners;
-    params?: {
-        bitsPerSample?: number;
-        sampleRate?: number;
-        channelCount?: number;
-        almostFinishedTrigger?: number;
-    };
+    bitsPerSample?: number;
+    sampleRate?: number;
+    channelCount?: number;
+    almostFinishedTrigger?: number;
 }
